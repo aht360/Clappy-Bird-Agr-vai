@@ -1,16 +1,17 @@
 #include "app.hpp"
 
+	
 int main () {
 	srand(time(NULL));
 	int n = 0;
 	int i;
 
-	const int FPS = 60;
 	bool redraw = true;
 	float gameTime = 0.0;
 	int frames = 0;
 	int gameFPS = 0;
-	
+	int score = 0;
+
 	if(!init()){
 		printf("Failed to initialize!\n");
 		return -1;
@@ -67,7 +68,7 @@ int main () {
 				if((*it).move(SCREEN_WIDTH)){
 					resetedPosition = true;
 				}
-				if((*it).checkScore(SCREEN_WIDTH, bird.x, bird.y)){
+				if((*it).checkScore(SCREEN_WIDTH, bird.x)){
 					score += 1;
 					printf("Score: %d\n", score);
 				}
@@ -79,7 +80,7 @@ int main () {
 
 			bird.accel(false);
 
-			if(bird.isCollision(tubes.front(), SCREEN_HEIGHT)){
+			if(0){
 				paused = true;
 				al_draw_bitmap(loseScreen, 0, 0, 0);
 				al_flip_display();
@@ -108,12 +109,12 @@ bool init() {
 
     if (!al_init()) {
        	printf("Falha ao inicializar a Allegro.\n");
-        sucess = false;
+        success = false;
     }
  
     if (!al_init_image_addon()) {
         printf("Falha ao inicializar add-on allegro_image.\n");
-        sucess = false;
+        success = false;
     }
 
     if (!al_install_keyboard()) {
@@ -126,7 +127,7 @@ bool init() {
 
     if(window == NULL) {
     	printf("Window could not be created!\n");
-		sucess = false;
+		success = false;
     }
 
     event_queue = al_create_event_queue();
@@ -140,14 +141,14 @@ bool init() {
 
     if(backgroundScreen == NULL) {
     	printf("Background could not be created!\n");
-		sucess = false;
+		success = false;
     }
 
     loseScreen = al_load_bitmap("Resources/lose.bmp");
 
     if(loseScreen == NULL) {
     	printf("Lose screen could not be created!\n");
-		sucess = false;
+		success = false;
     }
 
     timer = al_create_timer(1.0 / FPS);
@@ -159,26 +160,26 @@ bool init() {
     al_register_event_source(event_queue, al_get_display_event_source(window));
     al_register_event_source(event_queue, al_get_timer_event_source(timer));
  
-    return sucess;
+    return success;
 }
 
 bool loadMedia_tubes(){
-	bool sucess = true;
+	bool success = true;
 
 	tubes.clear();
 
-	for(int i = 0; i < 3 && sucess == true; i++) {
+	for(int i = 0; i < 3 && success == true; i++) {
 		int botTubeY = (rand()%((TUBE_MIN_Y - TUBE_MAX_Y) + 1) + TUBE_MAX_Y)*100;
 		
 		tubes.push_back(Tube(SCREEN_WIDTH + 100 + 400*i, botTubeY, i));
 
 		if(tubes.back().tube_bot == NULL || tubes.back().tube_top == NULL){
 			printf( "Unable to load image tube.bmp!\n");
-			sucess = false;
+			success = false;
 		}
 	}
 
-	return sucess;
+	return success;
 }
 
 void close() { 

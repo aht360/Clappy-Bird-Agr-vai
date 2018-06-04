@@ -16,6 +16,7 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const int TUBE_MIN_Y = 4;
 const int TUBE_MAX_Y = 2;
+const int FPS = 60;
 
 ALLEGRO_DISPLAY *window = NULL;
 ALLEGRO_BITMAP *backgroundScreen = NULL;
