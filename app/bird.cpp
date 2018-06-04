@@ -2,13 +2,14 @@
 
 Bird::Bird(std::string color, const int width, const int height){
 	//load and save images
-	std::string bNormal = "Resources/"+ color +"/bird_normal.bmp";
-	std::string bDown = "Resources/"+ color +"/bird_down.bmp";
-	std::string bUp = "Resources/"+ color +"/bird_up.bmp";
+	std::string bNormal = "Resources/"+color+"/bird_normal.bmp";
+	std::string bDown = "Resources/"+color+"/bird_down.bmp";
+	std::string bUp = "Resources/"+color+"/bird_up.bmp";
 
 	birdNormal = al_load_bitmap(bNormal.c_str());
 	birdDown = al_load_bitmap(bDown.c_str());
 	birdUp = al_load_bitmap(bUp.c_str());
+
 	x = width/4 - 40;
 	y = height/2;
 
@@ -16,11 +17,15 @@ Bird::Bird(std::string color, const int width, const int height){
 	timer = al_current_time();
 }
 
+Bird::Bird(){
+	timer = al_current_time();
+}
+
 void Bird::draw(){
 	if(velocity>1){
 		al_draw_bitmap(birdDown, x, y, 0);
 
-	}else if(velocity<=1 && velocity >= -1){
+	}else if(velocity<=10 && velocity >= -10){
 		al_draw_bitmap(birdNormal, x, y, 0);
 		
 	}else{
@@ -31,15 +36,19 @@ void Bird::draw(){
 void Bird::accel(bool isClap){
 	float now = al_current_time();
 	if(isClap){
-		velocity = -7.3;
+		velocity = -275;
 	}
-	velocity += 0.33;
-	if(velocity > 15)
-		velocity = 15;
+	velocity += 18;
+	if(velocity > 350)
+		velocity = 350;
 	y += velocity*(now-timer);
 	timer = now;
 	if(y <= 0)
 		y = 0;
+}
+
+void Bird::setTimer(float time){
+	timer = time;
 }
 
 void Bird::close(){

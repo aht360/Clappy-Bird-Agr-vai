@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = app.cpp tube.cpp bird.cpp
+OBJS = tube.cpp bird.cpp app.cpp
 
 #OBJ_NAME specifies the name of our exectuable
 OBJ_NAME = aplication

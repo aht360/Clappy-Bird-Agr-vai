@@ -1,6 +1,7 @@
 #pragma once
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include <stdio.h>
 
 class Tube {
 	public:
@@ -9,10 +10,12 @@ class Tube {
 
 		Tube(double x, double y, int id);
 		bool move(int screenWidth);
+		void draw();
 		bool checkScore(const int width, float bird_x);
 		void resetPosition(int screenWidth);
 		float getX();
 		float getY();
+		void setTimer(float time);
 	private:
 		float x;
 		float y;

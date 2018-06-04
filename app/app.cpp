@@ -1,6 +1,6 @@
 #include "app.hpp"
 
-	
+
 int main () {
 	srand(time(NULL));
 	int n = 0;
@@ -12,6 +12,8 @@ int main () {
 	int gameFPS = 0;
 	int score = 0;
 
+
+
 	if(!init()){
 		printf("Failed to initialize!\n");
 		return -1;
@@ -21,13 +23,12 @@ int main () {
 		printf("Failed to load tube!\n");
 		return -1;
 	}
-
+	bird = Bird("yellow", SCREEN_WIDTH, SCREEN_HEIGHT);
 	bool quit = false;
 	bool paused = true;
 	bool buttonPress = false;
 	bird.draw();
 	al_flip_display();
-
 	al_start_timer(timer);
 
 	while (!quit) {
@@ -40,6 +41,10 @@ int main () {
 			if (paused == true) {
 				if(ev.keyboard.keycode == ALLEGRO_KEY_UP) {
 					paused = false;
+					bird.setTimer(al_current_time());
+					for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+						(*it).setTimer(al_current_time());
+					}
 					bird.accel(true);
 				}
 			} else {
@@ -53,7 +58,7 @@ int main () {
 				buttonPress = false;
 			}
 		}
-		else if (ev.type == ALLEGRO_EVENT_TIMER && al_event_queue_is_empty(event_queue)) {
+		else if (ev.type == ALLEGRO_EVENT_TIMER && al_event_queue_is_empty(event_queue) && !paused) {
 			redraw = true;
 			//update fps
 			frames++;
@@ -96,6 +101,11 @@ int main () {
 
 		if (redraw && al_is_event_queue_empty(event_queue)) {
 			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_draw_bitmap(backgroundScreen, 0, 0, 0);
+			for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+				(*it).draw();
+			}
+			bird.draw();
 			al_flip_display();
 		}
 
@@ -183,11 +193,11 @@ bool loadMedia_tubes(){
 }
 
 void close() { 
-	for(auto &it : tubes){
-		al_destroy_bitmap(it.tube_bot);
-		al_destroy_bitmap(it.tube_top);
-		it.tube_bot = NULL;
-		it.tube_top = NULL;
+	for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+		al_destroy_bitmap((*it).tube_bot);
+		al_destroy_bitmap((*it).tube_top);
+		(*it).tube_bot = NULL;
+		(*it).tube_top = NULL;
 	}
 
 	al_destroy_bitmap(backgroundScreen);

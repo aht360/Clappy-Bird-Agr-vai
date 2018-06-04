@@ -25,9 +25,9 @@ ALLEGRO_BITMAP *loseScreen = NULL;
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 ALLEGRO_TIMER* timer = NULL;
 
+Bird bird = Bird("yellow", SCREEN_WIDTH, SCREEN_HEIGHT);
 
 list <Tube> tubes;
-Bird bird("yellow", SCREEN_WIDTH, SCREEN_HEIGHT);
 
 bool init();
 bool loadMedia_tubes();
