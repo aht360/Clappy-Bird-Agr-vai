@@ -48,87 +48,83 @@ int main () {
 	char num ='1';
 	
 
-				while (!quit) {
-					ALLEGRO_EVENT ev;
-					al_wait_for_event(event_queue, &ev);
-					cout << num;
-					if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-						quit = true;
-					} else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
-						if (paused == true) {
-							if(ev.keyboard.keycode == ALLEGRO_KEY_UP) {
-								paused = false;
-								bird.setTimer(al_current_time());
-								for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
-									(*it).setTimer(al_current_time());
-								}
-								bird.accel(true);
-							}
-						} else {
-							if(ev.keyboard.keycode == ALLEGRO_KEY_UP && buttonPress == false) {
-								bird.accel(true);
-								buttonPress = true;
-							}
-						}
-					} else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
-						if(ev.keyboard.keycode == ALLEGRO_KEY_UP && buttonPress == true) {
-							buttonPress = false;
-						}
+	while (!quit) {
+		ALLEGRO_EVENT ev;
+		al_wait_for_event(event_queue, &ev);
+		cout << num;
+		if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+			quit = true;
+		} else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
+			if (paused == true) {
+				if(ev.keyboard.keycode == ALLEGRO_KEY_UP) {
+					paused = false;
+					bird.setTimer(al_current_time());
+					for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+						(*it).setTimer(al_current_time());
 					}
-					else if (ev.type == ALLEGRO_EVENT_TIMER && al_event_queue_is_empty(event_queue) && !paused) {
-						redraw = true;
-						//update fps
-						frames++;
-						if (al_current_time() - gameTime >= 1) {
-							gameTime = al_current_time();
-							gameFPS = frames;
-							frames = 0;
-						}
-						//update objects
-						bool resetedPosition = false;
-						for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
-							if((*it).move(SCREEN_WIDTH)){
-								resetedPosition = true;
-							}
-							if((*it).checkScore(SCREEN_WIDTH, bird.x)){
-								score += 1;
-								printf("Score: %d\n", score);
-							}
-							
-						}
-						if(resetedPosition) {
-							tubes.splice(tubes.end(), tubes, tubes.begin());
-						}
-
-						bird.accel(false);
-
-						if(0){
-							paused = true;
-							al_draw_bitmap(loseScreen, 0, 0, 0);
-							al_flip_display();
-							score = 0;
-							al_rest(1);
-							bird.reset(SCREEN_WIDTH, SCREEN_HEIGHT);
-							loadMedia_tubes();
-							al_draw_bitmap(backgroundScreen, 0, 0, 0);
-						}
-
-						bird.draw();
-					}
-
-					if (redraw && al_is_event_queue_empty(event_queue)) {
-						al_clear_to_color(al_map_rgb(0, 0, 0));
-						al_draw_bitmap(backgroundScreen, 0, 0, 0);
-						for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
-							(*it).draw();
-						}
-						bird.draw();
-						al_flip_display();
-					}
-
+					bird.accel(true);
+				}
+			} else {
+				if(ev.keyboard.keycode == ALLEGRO_KEY_UP && buttonPress == false) {
+					bird.accel(true);
+					buttonPress = true;
 				}
 			}
-		
+		} else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+			if(ev.keyboard.keycode == ALLEGRO_KEY_UP && buttonPress == true) {
+				buttonPress = false;
+			}
+		}
+		else if (ev.type == ALLEGRO_EVENT_TIMER && al_event_queue_is_empty(event_queue) && !paused) {
+			redraw = true;
+			//update fps
+			frames++;
+			if (al_current_time() - gameTime >= 1) {
+				gameTime = al_current_time();
+				gameFPS = frames;
+				frames = 0;
+			}
+			//update objects
+			bool resetedPosition = false;
+			for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+				if((*it).move(SCREEN_WIDTH)){
+					resetedPosition = true;
+				}
+				if((*it).checkScore(SCREEN_WIDTH, bird.x)){
+					score += 1;
+					printf("Score: %d\n", score);
+				}
+
+			}
+			if(resetedPosition) {
+				tubes.splice(tubes.end(), tubes, tubes.begin());
+			}
+
+			bird.accel(false);
+
+			if(0){
+				paused = true;
+				al_draw_bitmap(loseScreen, 0, 0, 0);
+				al_flip_display();
+				score = 0;
+				al_rest(1);
+				bird.reset(SCREEN_WIDTH, SCREEN_HEIGHT);
+				loadMedia_tubes();
+				al_draw_bitmap(backgroundScreen, 0, 0, 0);
+			}
+
+			bird.draw();
+		}
+
+		if (redraw && al_is_event_queue_empty(event_queue)) {
+			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_draw_bitmap(backgroundScreen, 0, 0, 0);
+			for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+				(*it).draw();
+			}
+			bird.draw();
+			al_flip_display();
+		}
 	}
 	return 0;
 }
