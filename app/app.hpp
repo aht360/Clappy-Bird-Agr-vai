@@ -1,10 +1,15 @@
 #pragma once
 #include <allegro5/allegro.h>
+#include <omp.h>
+#include <SerialStream.h>
+#include <SerialPort.h>
 #include <allegro5/allegro_image.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
+#include <unistd.h>
+#include <cstdlib>
 #include <list>
 #include <iterator>
 #include "tube.hpp"
@@ -28,6 +33,8 @@ ALLEGRO_TIMER* timer = NULL;
 Bird bird = Bird("yellow", SCREEN_WIDTH, SCREEN_HEIGHT);
 
 list <Tube> tubes;
+
+LibSerial::SerialStream my_serial;
 
 bool init();
 bool loadMedia_tubes();

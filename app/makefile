@@ -6,5 +6,5 @@ OBJ_NAME = aplication
 
 #This is the target that compiles our executable
 all : $(OBJS)
-	g++ $(OBJS) -w -lallegro_image -lallegro -o $(OBJ_NAME)
+	g++ $(OBJS) -L/usr/local/lib -w -lallegro_image -lallegro -lserial -fopenmp -o $(OBJ_NAME)
 	./$(OBJ_NAME)

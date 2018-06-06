@@ -42,6 +42,7 @@ void Bird::accel(bool isClap){
 	if(velocity > 350)
 		velocity = 350;
 	y += velocity*(now-timer);
+	//printf("%f", now-timer);
 	timer = now;
 	if(y <= 0)
 		y = 0;
