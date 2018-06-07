@@ -15,7 +15,7 @@ int main () {
 	int score = 0;
 
 
-	my_serial.Open("/dev/ttyUSB0");
+	/*my_serial.Open("/dev/ttyUSB0");
 	while(!my_serial.good()){
 		printf("Serial Port closed");
 	}
@@ -26,7 +26,7 @@ int main () {
 
 	my_serial.SetFlowControl(LibSerial::SerialStreamBuf::FLOW_CONTROL_NONE);
 
-	my_serial.SetParity(LibSerial::SerialStreamBuf::PARITY_NONE);
+	my_serial.SetParity(LibSerial::SerialStreamBuf::PARITY_NONE);*/
 
 	if(!init()){
 		printf("Failed to initialize!\n");
@@ -43,7 +43,7 @@ int main () {
 	bool buttonPress = false;
 	bird.draw();
 	al_flip_display();
-	al_rest(5);
+	//al_rest(5);
 	al_start_timer(timer);
 	char num ='1';
 	
@@ -51,13 +51,13 @@ int main () {
 	while (!quit) {
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
-		cout << num;
 		if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			quit = true;
 		} else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) {
 			if (paused == true) {
 				if(ev.keyboard.keycode == ALLEGRO_KEY_UP) {
 					paused = false;
+					score = 0;
 					bird.setTimer(al_current_time());
 					for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
 						(*it).setTimer(al_current_time());
@@ -90,20 +90,28 @@ int main () {
 				if((*it).move(SCREEN_WIDTH)){
 					resetedPosition = true;
 				}
-				if((*it).checkScore(SCREEN_WIDTH, bird.x)){
-					score += 1;
-					printf("Score: %d\n", score);
-				}
 
 			}
+
+			if(tubes.front().checkScore(SCREEN_WIDTH, bird.x)){
+				score += 1;
+				printf("Score: %d\n", score);
+			}
+
 			if(resetedPosition) {
 				tubes.splice(tubes.end(), tubes, tubes.begin());
 			}
 
 			bird.accel(false);
-
-			if(0){
+			bird.update();
+			if(bird.isCollision(tubes.front(), SCREEN_HEIGHT)){
 				paused = true;
+				al_clear_to_color(al_map_rgb(0, 0, 0));
+				al_draw_bitmap(backgroundScreen, 0, 0, 0);
+				for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+					(*it).draw();
+				}
+				bird.draw();
 				al_draw_bitmap(loseScreen, 0, 0, 0);
 				al_flip_display();
 				score = 0;
@@ -113,7 +121,6 @@ int main () {
 				al_draw_bitmap(backgroundScreen, 0, 0, 0);
 			}
 
-			bird.draw();
 		}
 
 		if (redraw && al_is_event_queue_empty(event_queue)) {

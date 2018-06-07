@@ -16,6 +16,8 @@ class Tube {
 		float getX();
 		float getY();
 		void setTimer(float time);
+		float w;
+		float h;
 	private:
 		float x;
 		float y;

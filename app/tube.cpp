@@ -11,6 +11,8 @@ Tube::Tube(double x, double y, int id) {
 	this->x = x;
 	this->y = y;
 	this->id = id;
+	this->w = al_get_bitmap_width(tube_bot);
+	this->h = al_get_bitmap_height(tube_bot);
 }
 
 bool Tube::move(int screenWidth){
@@ -18,7 +20,7 @@ bool Tube::move(int screenWidth){
 	float now = al_current_time();
 	this->x -= 200*(now - timer);
 
-	if(x <= -al_get_bitmap_width(tube_bot)) {
+	if(x <= -this->w) {
 		resetPosition(screenWidth);
 		restedPosition = true;
 	} 
@@ -33,7 +35,7 @@ void Tube::setTimer(float time){
 void Tube::resetPosition(int screenWidth) {
 	int botTubeY = (rand()%((TUBE_MIN_Y - TUBE_MAX_Y) + 1) + TUBE_MAX_Y)*100;
 
-	this->x = screenWidth + 400 + al_get_bitmap_width(tube_bot);
+	this->x = screenWidth + 400 + this->w;
 	this->y = botTubeY;
 }
 
@@ -43,7 +45,7 @@ void Tube::draw(){
 }
 
 bool Tube::checkScore(const int width, float bird_x){
-	if(this->x == bird_x){
+	if(this->x >= bird_x-1.8 && this->x <= bird_x+1.8){
 		return true;
 	} else {
 		return false;

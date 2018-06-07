@@ -34,18 +34,20 @@ void Bird::draw(){
 }
 
 void Bird::accel(bool isClap){
-	float now = al_current_time();
 	if(isClap){
-		velocity = -275;
+		velocity = -455;
 	}
 	velocity += 18;
-	if(velocity > 350)
-		velocity = 350;
-	y += velocity*(now-timer);
 	//printf("%f", now-timer);
-	timer = now;
-	if(y <= 0)
+}
+
+void Bird::update(){
+	float now = al_current_time();
+	y += velocity*(now-timer);
+
+	if(y < 0)
 		y = 0;
+	timer = now;
 }
 
 void Bird::setTimer(float time){
@@ -63,45 +65,48 @@ void Bird::close(){
 	birdDown = NULL;
 }
 
-// bool Bird::isCollision(Tube tube, const int height){
-// 	SDL_Rect bottom_tube, top_tube, bird, aux;
-// 	bottom_tube.y = tube.getY();
-// 	bottom_tube.x = tube.getX();
-// 	bottom_tube.w = tube.tube_bot->w;
-// 	bottom_tube.h = tube.tube_bot->h;
+ bool Bird::isCollision(Tube tube, const int height){
+ 	float botTubeY, botTubeX, topTubeY, topTubeX, birdW, birdH;
+ 	botTubeY = tube.getY();
+ 	botTubeX = tube.getX();
 
-// 	top_tube.y = tube.getY() - 425;
-// 	top_tube.x = tube.getX();
-// 	top_tube.w = tube.tube_top->w;
-// 	top_tube.h = tube.tube_top->h;
+ 	topTubeY = botTubeY - 425;
+ 	topTubeX = botTubeX;
 
-// 	bird.y = y;
-// 	bird.x = x;
+ 	float hitboxX, hitboxY;
+ 	hitboxX = x + 3;
+ 	hitboxY = y + 3;
 
-//  	if(velocity>1){
-//  		bird.w = birdDown->w;
-//  		bird.h = birdDown->h;
-//  		if(bird.y+bird.h >= height)
-//  			return true;
-// 		if(SDL_IntersectRect(&bottom_tube, &bird, &aux) == SDL_TRUE || SDL_IntersectRect(&top_tube, &bird, &aux) == SDL_TRUE)
-// 			return true;
-// 	}else if(velocity <=1 && velocity >= -1){
-//  		bird.w = birdNormal->w;
-//  		bird.h = birdNormal->h;
-//  		if(bird.y+bird.h >= height)
-//  			return true;
-// 		if(SDL_IntersectRect(&bottom_tube, &bird, &aux) == SDL_TRUE || SDL_IntersectRect(&top_tube, &bird, &aux) == SDL_TRUE)
-// 			return true;
-// 	}else{
-//  		bird.w = birdUp->w;
-//  		bird.h = birdUp->h;
-//  		if(bird.y+bird.h >= height)
-//  			return true;
-// 		if(SDL_IntersectRect(&bottom_tube, &bird, &aux) == SDL_TRUE || SDL_IntersectRect(&top_tube, &bird, &aux) == SDL_TRUE)
-// 			return true;
-// 	}
-// 	return false;
-// }
+  	if(velocity>1){
+  		birdW = al_get_bitmap_width(birdDown) - 3;
+  		birdH = al_get_bitmap_height(birdDown) - 3;
+  		if(hitboxY+birdH >= height)
+  			return true;
+  		if((hitboxX < botTubeX + tube.w) && ((hitboxX+birdW) > botTubeX) && (hitboxY <(botTubeY + tube.h)) && ((hitboxY + birdH) > botTubeY))
+ 			return true;
+  		if((hitboxX < topTubeX + tube.w) && ((hitboxX+birdW) > topTubeX) && (hitboxY <(topTubeY + tube.h)) && ((hitboxY + birdH) > topTubeY))
+ 			return true;
+ 	}else if(velocity <=10 && velocity >= -10){
+  		birdW = al_get_bitmap_width(birdNormal) - 3;
+  		birdH = al_get_bitmap_height(birdNormal) - 3;
+  		if(hitboxY+birdH >= height)
+  			return true;
+  		if((hitboxX < botTubeX + tube.w) && ((hitboxX+birdW) > botTubeX) && (hitboxY <(botTubeY + tube.h)) && ((hitboxY + birdH) > botTubeY))
+ 			return true;
+  		if((hitboxX < topTubeX + tube.w) && ((hitboxX+birdW) > topTubeX) && (hitboxY <(topTubeY + tube.h)) && ((hitboxY + birdH) > topTubeY))
+ 			return true;
+ 	}else{
+  		birdW = al_get_bitmap_width(birdUp) - 3;
+  		birdH = al_get_bitmap_height(birdUp) - 3;
+  		if(hitboxY+birdH >= height)
+  			return true;
+  		if((hitboxX < botTubeX + tube.w) && ((hitboxX+birdW) > botTubeX) && (hitboxY <(botTubeY + tube.h)) && ((hitboxY + birdH) > botTubeY))
+ 			return true;
+  		if((hitboxX < topTubeX + tube.w) && ((hitboxX+birdW) > topTubeX) && (hitboxY <(topTubeY + tube.h)) && ((hitboxY + birdH) > topTubeY))
+ 			return true;
+ 	}
+ 	return false;
+ }
 
 void Bird::reset(const int width, const int height){
 	x = width/4 - 40;
