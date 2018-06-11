@@ -17,7 +17,6 @@ int main () {
 
 	bool quit = false;
 	char num ='1';
-
 	#pragma omp parallel num_threads(2)
 	{
 		#pragma omp sections
@@ -300,14 +299,13 @@ void derrota(int dev){
 }
 
 void writeScore(int score, int dev){
-	int k;
-	string aux = to_string(score);
-	while(aux.length() < 4){
-		aux = '0' + aux;
-	}
+	int k = 0;
+	char str[4];
+	sprintf(str, "%04d", score);
 	int count = 0;
-	for(int i = aux.length()-1; i>=0; --i){
-		k |= (hexdigit[aux[i]-'a'] << (8*count));
+	for(int i = 3; i>=0; --i){
+		k = k | (hexdigit[str[i]-'0'] << (8*count));
+		count++;
 	}
 	k = ~k;
 	write(dev, &k, 0);
