@@ -8,15 +8,12 @@ int main () {
 	int n = 0;
 	int i;
 
-	int dev = open("/dev/de2i_150_altera", O_RDWR);
+    int dev = open("/dev/de2i150_altera", O_RDWR);
 
-	derrota(dev);
-	derrota(dev);
 	bool redraw = true;
 	float gameTime = 0.0;
 	int frames = 0;
 	int gameFPS = 0;
-	int score = 0;
 
 	bool quit = false;
 	char num ='1';
@@ -65,11 +62,14 @@ int main () {
 				bird = Bird("yellow", SCREEN_WIDTH, SCREEN_HEIGHT);
 				bool paused = true;
 				bool buttonPress = false;
+				bool addScore = true;
 				bird.draw();
 				al_flip_display();
 				al_start_timer(timer);
-				int life = 3;
-
+				int life = 5;
+				int score = 0;
+				writeLed(life, dev);
+				writeScore(score, dev);
 				
 				while (!quit) {
 					ALLEGRO_EVENT ev;
@@ -94,12 +94,15 @@ int main () {
 
 						}
 
-						if(tubes.front().checkScore(SCREEN_WIDTH, bird.x)){
+						if(tubes.front().checkScore(SCREEN_WIDTH, bird.x) && addScore){
 							score += 1;
+							writeScore(score, dev);
 							printf("Score: %d\n", score);
+							addScore = false;
 						}
 
 						if(resetedPosition) {
+							addScore = true;
 							tubes.splice(tubes.end(), tubes, tubes.begin());
 						}
 
@@ -118,11 +121,10 @@ int main () {
 							if(life == 0){
 								al_draw_bitmap(loseScreen, 0, 0, 0);
 								score = 0;
+								writeScore(score, dev);
 							}
 							al_flip_display();
-							if(life == 0)
-								derrota(dev);
-							al_rest(1);
+							derrota(dev);
 							bird.reset(SCREEN_WIDTH, SCREEN_HEIGHT);
 							loadMedia_tubes();
 							al_draw_bitmap(backgroundScreen, 0, 0, 0);
@@ -132,9 +134,11 @@ int main () {
 					if (num == '0') {
 						if (paused == true) {
 							paused = false;
-							score = 0;
+							addScore = true;
 							if(life == 0){
-								life = 3;
+								life = 5;
+								score = 0;
+								writeScore(score, dev);
 								writeLed(life, dev);
 							}
 							bird.setTimer(al_current_time());
@@ -161,6 +165,7 @@ int main () {
 						al_flip_display();
 					}
 				}
+				close();
 			}
 		}
 	}
@@ -265,7 +270,11 @@ void close() {
 
 void writeLed(int count, int dev){
 	int print;
-	if(count == 3){
+	if(count == 5){
+		print = 31;
+	}else if(count == 4){
+		print = 15;
+	}else if(count == 3){
 		print = 7;
 	}else if(count == 2){
 		print = 3;
@@ -280,12 +289,21 @@ void writeLed(int count, int dev){
 void derrota(int dev){
 	long int k;
 
-	for(int i =0; i < 10; ++i){
-		k = rand()%2000000000;
-		write(dev, &k, 2);
-		usleep(50000);
+	for(int i =0; i < 30; ++i){
+	    k = rand()%2000000000;
+	    write(dev, &k, 2);
+	    usleep(50000);
 	}
 	k = 0;
 	write(dev, &k, 2);
 	write(dev, &k, 2);
+}
+
+void writeScore(int score, int dev){
+	int k;
+	score = 4096;
+	k = hexdigit[score & 0xF] | (hexdigit[(score >> 4) & 0xF] << 8) | (hexdigit[(score >> 8) & 0xF] << 16) | (hexdigit[(score >> 12) & 0xF] << 24);
+	k = ~k;
+	write(dev, &k, 0);
+	write(dev, &k, 0);
 }

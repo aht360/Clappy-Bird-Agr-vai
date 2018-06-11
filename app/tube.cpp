@@ -45,7 +45,7 @@ void Tube::draw(){
 }
 
 bool Tube::checkScore(const int width, float bird_x){
-	if(this->x >= bird_x-2.5 && this->x <= bird_x+2.5){
+	if(this->x+this->w <= bird_x){
 		return true;
 	} else {
 		return false;

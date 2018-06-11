@@ -24,6 +24,11 @@ const int TUBE_MIN_Y = 4;
 const int TUBE_MAX_Y = 2;
 const int FPS = 60;
 
+unsigned char hexdigit[] = {0x3F, 0x06, 0x5B, 0x4F,
+                            0x66, 0x6D, 0x7D, 0x07, 
+                            0x7F, 0x6F, 0x77, 0x7C,
+                            0x39, 0x5E, 0x79, 0x71};
+                            
 ALLEGRO_DISPLAY *window = NULL;
 ALLEGRO_BITMAP *backgroundScreen = NULL;
 ALLEGRO_BITMAP *loseScreen = NULL;
@@ -42,3 +47,4 @@ bool loadMedia_tubes();
 void close();
 void writeLed(int count, int dev);
 void derrota(int dev);
+void writeScore(int score, int dev);
