@@ -35,7 +35,7 @@ void Bird::draw(){
 
 void Bird::accel(bool isClap){
 	if(isClap){
-		velocity = -350;
+		velocity = -365;
 	}
 	velocity += 25;
 	//printf("%f", now-timer);

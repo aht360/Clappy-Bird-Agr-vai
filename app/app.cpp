@@ -8,6 +8,10 @@ int main () {
 	int n = 0;
 	int i;
 
+	int dev = open("/dev/de2i_150_altera", O_RDWR);
+
+	derrota(dev);
+	derrota(dev);
 	bool redraw = true;
 	float gameTime = 0.0;
 	int frames = 0;
@@ -49,6 +53,7 @@ int main () {
 
 			#pragma omp section
 			{
+
 				if(!init()){
 					printf("Failed to initialize!\n");
 				}
@@ -56,12 +61,15 @@ int main () {
 				if(!loadMedia_tubes()){
 					printf("Failed to load tube!\n");
 				}
+
 				bird = Bird("yellow", SCREEN_WIDTH, SCREEN_HEIGHT);
 				bool paused = true;
 				bool buttonPress = false;
 				bird.draw();
 				al_flip_display();
 				al_start_timer(timer);
+				int life = 3;
+
 				
 				while (!quit) {
 					ALLEGRO_EVENT ev;
@@ -98,6 +106,8 @@ int main () {
 						bird.accel(false);
 						bird.update();
 						if(bird.isCollision(tubes.front(), SCREEN_HEIGHT)){
+							life --;
+							writeLed(life, dev);
 							paused = true;
 							al_clear_to_color(al_map_rgb(0, 0, 0));
 							al_draw_bitmap(backgroundScreen, 0, 0, 0);
@@ -105,9 +115,13 @@ int main () {
 								(*it).draw();
 							}
 							bird.draw();
-							al_draw_bitmap(loseScreen, 0, 0, 0);
+							if(life == 0){
+								al_draw_bitmap(loseScreen, 0, 0, 0);
+								score = 0;
+							}
 							al_flip_display();
-							score = 0;
+							if(life == 0)
+								derrota(dev);
 							al_rest(1);
 							bird.reset(SCREEN_WIDTH, SCREEN_HEIGHT);
 							loadMedia_tubes();
@@ -119,6 +133,10 @@ int main () {
 						if (paused == true) {
 							paused = false;
 							score = 0;
+							if(life == 0){
+								life = 3;
+								writeLed(life, dev);
+							}
 							bird.setTimer(al_current_time());
 							for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
 								(*it).setTimer(al_current_time());
@@ -245,3 +263,29 @@ void close() {
     window = NULL;
 }
 
+void writeLed(int count, int dev){
+	int print;
+	if(count == 3){
+		print = 7;
+	}else if(count == 2){
+		print = 3;
+	}else if(count == 1){
+		print = 1;
+	}else{
+		print = 0;
+	}
+	write(dev, &print, 1);
+}
+
+void derrota(int dev){
+	long int k;
+
+	for(int i =0; i < 10; ++i){
+		k = rand()%2000000000;
+		write(dev, &k, 2);
+		usleep(50000);
+	}
+	k = 0;
+	write(dev, &k, 2);
+	write(dev, &k, 2);
+}

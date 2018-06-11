@@ -10,6 +10,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <cstdlib>
+#include <fcntl.h>
 #include <list>
 #include <iterator>
 #include "tube.hpp"
@@ -39,3 +40,5 @@ LibSerial::SerialStream my_serial;
 bool init();
 bool loadMedia_tubes();
 void close();
+void writeLed(int count, int dev);
+void derrota(int dev);
