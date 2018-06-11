@@ -42,4 +42,4 @@ __attribute__((section(".modinfo"))) =
 
 MODULE_ALIAS("pci:v00001172d00000004sv*sd*bc*sc*i*");
 
-MODULE_INFO(srcversion, "AB9A1E0D9688711C5FDD710");
+MODULE_INFO(srcversion, "7A6C5032AF28F714D8F86AF");

@@ -120,8 +120,8 @@ static int pci_probe(struct pci_dev *dev, const struct pci_device_id *id) {
   hexport = ioremap_nocache(resource + 0XC020, 0x20);
   butt = ioremap_nocache(resource + 0XC0A0, 0X20);
   sw  = ioremap_nocache(resource + 0XC040, 0x20);
-  redLed = ioremap_nocache(resource + 0XC060, 0x20);
-  greenLed = ioremap_nocache(resource + 0XC080, 0x20);
+  redLed = ioremap_nocache(resource + 0XC080, 0x20);
+  greenLed = ioremap_nocache(resource + 0XC060, 0x20);
 
   return 0;
 }
