@@ -301,8 +301,14 @@ void derrota(int dev){
 
 void writeScore(int score, int dev){
 	int k;
-	score = 4096;
-	k = hexdigit[score & 0xF] | (hexdigit[(score >> 4) & 0xF] << 8) | (hexdigit[(score >> 8) & 0xF] << 16) | (hexdigit[(score >> 12) & 0xF] << 24);
+	string aux = to_string(score);
+	while(aux.length() < 4){
+		aux = '0' + aux;
+	}
+	int count = 0;
+	for(int i = aux.length()-1; i>=0; --i){
+		k |= (hexdigit[aux[i]-'a'] << (8*count));
+	}
 	k = ~k;
 	write(dev, &k, 0);
 	write(dev, &k, 0);
