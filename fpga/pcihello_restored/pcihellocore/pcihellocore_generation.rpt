@@ -1,30 +1,28 @@
 Info: Starting: Create block symbol file (.bsf)
-Info: qsys-generate C:\Users\ijmg\Desktop\mapeamento\pcihello_restored\pcihellocore.qsys --block-symbol-file --output-directory=C:\Users\ijmg\Desktop\mapeamento\pcihello_restored\pcihellocore --family="Cyclone IV GX" --part=EP4CGX150DF31C7
+Info: qsys-generate C:\Users\aht\Downloads\AP7\Materiais\pcihello_restored\pcihellocore.qsys --block-symbol-file --output-directory=C:\Users\aht\Downloads\AP7\Materiais\pcihello_restored\pcihellocore --family="Cyclone IV GX" --part=EP4CGX150DF31C7
 Progress: Loading pcihello_restored/pcihellocore.qsys
 Progress: Reading input file
-Progress: Adding hex_display [altera_avalon_pio 16.1]
-Progress: Parameterizing module hex_display
+Progress: Adding green_leds [altera_avalon_pio 16.1]
+Progress: Parameterizing module green_leds
 Progress: Adding hexport [altera_avalon_pio 16.1]
 Progress: Parameterizing module hexport
 Progress: Adding inport [altera_avalon_pio 16.1]
 Progress: Parameterizing module inport
-Progress: Adding key [altera_avalon_pio 16.1]
-Progress: Parameterizing module key
-Progress: Adding led_g [altera_avalon_pio 16.1]
-Progress: Parameterizing module led_g
-Progress: Adding led_r [altera_avalon_pio 16.1]
-Progress: Parameterizing module led_r
 Progress: Adding pcie_hard_ip_0 [altera_pcie_hard_ip 16.1]
 Progress: Parameterizing module pcie_hard_ip_0
+Progress: Adding push_buttons [altera_avalon_pio 16.1]
+Progress: Parameterizing module push_buttons
+Progress: Adding red_leds [altera_avalon_pio 16.1]
+Progress: Parameterizing module red_leds
 Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
-Warning: pcihellocore.pcihellocore: Module dependency loop involving: "hex_display" (altera_avalon_pio 16.1), "pcie_hard_ip_0" (altera_pcie_hard_ip 16.1)
+Warning: pcihellocore.pcihellocore: Module dependency loop involving: "pcie_hard_ip_0" (altera_pcie_hard_ip 16.1), "green_leds" (altera_avalon_pio 16.1)
 Info: pcihellocore.inport: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
 Info: pcihellocore.pcie_hard_ip_0:  Rx Master BAR 0 mapped to 16 -bit Avalon-MM address
 Warning: pcihellocore.pcie_hard_ip_0.pcie_hard_ip_0: Module dependency loop involving: "pcie_internal_hip" (altera_pcie_internal_hard_ip_qsys 16.1)
-Warning: pcihellocore.pcie_hard_ip_0.pcie_hard_ip_0: Module dependency loop involving: "pcie_internal_hip" (altera_pcie_internal_hard_ip_qsys 16.1), "avalon_clk" (altera_clock_bridge 16.1)
+Warning: pcihellocore.pcie_hard_ip_0.pcie_hard_ip_0: Module dependency loop involving: "avalon_clk" (altera_clock_bridge 16.1), "pcie_internal_hip" (altera_pcie_internal_hard_ip_qsys 16.1)
 Info: pcihellocore.pcie_hard_ip_0.pcie_internal_hip:  Txs Address width is 15
 Info: pcihellocore.pcie_hard_ip_0.pcie_internal_hip: Application clock frequency is 125 Mhz 
 Warning: pcihellocore.pcie_hard_ip_0.pcie_internal_hip.app_msi_ack: Interface has no signals
@@ -55,6 +53,7 @@ Warning: pcihellocore.pcie_hard_ip_0.refclk_conduit: refclk_conduit.conduit_out_
 Warning: pcihellocore.pcie_hard_ip_0.refclk_conduit: refclk_conduit.conduit_out_8 must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0.refclk_conduit: refclk_conduit.conduit_out_9 must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0.reset_controller_internal: reset_controller_internal.reset_n_out cannot be both connected and exported
+Info: pcihellocore.push_buttons: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
 Warning: pcihellocore.pcie_hard_ip_0: pcie_hard_ip_0.test_in must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0: pcie_hard_ip_0.clocks_sim must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0: pcie_hard_ip_0.reconfig_busy must be exported, or connected to a matching conduit.
@@ -66,32 +65,30 @@ Info: qsys-generate succeeded.
 Info: Finished: Create block symbol file (.bsf)
 Info: 
 Info: Starting: Create HDL design files for synthesis
-Info: qsys-generate C:\Users\ijmg\Desktop\mapeamento\pcihello_restored\pcihellocore.qsys --synthesis=VERILOG --output-directory=C:\Users\ijmg\Desktop\mapeamento\pcihello_restored\pcihellocore\synthesis --family="Cyclone IV GX" --part=EP4CGX150DF31C7
+Info: qsys-generate C:\Users\aht\Downloads\AP7\Materiais\pcihello_restored\pcihellocore.qsys --synthesis=VERILOG --output-directory=C:\Users\aht\Downloads\AP7\Materiais\pcihello_restored\pcihellocore\synthesis --family="Cyclone IV GX" --part=EP4CGX150DF31C7
 Progress: Loading pcihello_restored/pcihellocore.qsys
 Progress: Reading input file
-Progress: Adding hex_display [altera_avalon_pio 16.1]
-Progress: Parameterizing module hex_display
+Progress: Adding green_leds [altera_avalon_pio 16.1]
+Progress: Parameterizing module green_leds
 Progress: Adding hexport [altera_avalon_pio 16.1]
 Progress: Parameterizing module hexport
 Progress: Adding inport [altera_avalon_pio 16.1]
 Progress: Parameterizing module inport
-Progress: Adding key [altera_avalon_pio 16.1]
-Progress: Parameterizing module key
-Progress: Adding led_g [altera_avalon_pio 16.1]
-Progress: Parameterizing module led_g
-Progress: Adding led_r [altera_avalon_pio 16.1]
-Progress: Parameterizing module led_r
 Progress: Adding pcie_hard_ip_0 [altera_pcie_hard_ip 16.1]
 Progress: Parameterizing module pcie_hard_ip_0
+Progress: Adding push_buttons [altera_avalon_pio 16.1]
+Progress: Parameterizing module push_buttons
+Progress: Adding red_leds [altera_avalon_pio 16.1]
+Progress: Parameterizing module red_leds
 Progress: Building connections
 Progress: Parameterizing connections
 Progress: Validating
 Progress: Done reading input file
-Warning: pcihellocore.pcihellocore: Module dependency loop involving: "pcie_hard_ip_0" (altera_pcie_hard_ip 16.1), "hex_display" (altera_avalon_pio 16.1)
+Warning: pcihellocore.pcihellocore: Module dependency loop involving: "green_leds" (altera_avalon_pio 16.1), "pcie_hard_ip_0" (altera_pcie_hard_ip 16.1)
 Info: pcihellocore.inport: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
 Info: pcihellocore.pcie_hard_ip_0:  Rx Master BAR 0 mapped to 16 -bit Avalon-MM address
 Warning: pcihellocore.pcie_hard_ip_0.pcie_hard_ip_0: Module dependency loop involving: "pcie_internal_hip" (altera_pcie_internal_hard_ip_qsys 16.1)
-Warning: pcihellocore.pcie_hard_ip_0.pcie_hard_ip_0: Module dependency loop involving: "pcie_internal_hip" (altera_pcie_internal_hard_ip_qsys 16.1), "avalon_clk" (altera_clock_bridge 16.1)
+Warning: pcihellocore.pcie_hard_ip_0.pcie_hard_ip_0: Module dependency loop involving: "avalon_clk" (altera_clock_bridge 16.1), "pcie_internal_hip" (altera_pcie_internal_hard_ip_qsys 16.1)
 Info: pcihellocore.pcie_hard_ip_0.pcie_internal_hip:  Txs Address width is 15
 Info: pcihellocore.pcie_hard_ip_0.pcie_internal_hip: Application clock frequency is 125 Mhz 
 Warning: pcihellocore.pcie_hard_ip_0.pcie_internal_hip.app_msi_ack: Interface has no signals
@@ -122,6 +119,7 @@ Warning: pcihellocore.pcie_hard_ip_0.refclk_conduit: refclk_conduit.conduit_out_
 Warning: pcihellocore.pcie_hard_ip_0.refclk_conduit: refclk_conduit.conduit_out_8 must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0.refclk_conduit: refclk_conduit.conduit_out_9 must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0.reset_controller_internal: reset_controller_internal.reset_n_out cannot be both connected and exported
+Info: pcihellocore.push_buttons: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
 Warning: pcihellocore.pcie_hard_ip_0: pcie_hard_ip_0.test_in must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0: pcie_hard_ip_0.clocks_sim must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0: pcie_hard_ip_0.reconfig_busy must be exported, or connected to a matching conduit.
@@ -130,23 +128,19 @@ Warning: pcihellocore.pcie_hard_ip_0: pcie_hard_ip_0.reconfig_togxb must be expo
 Warning: pcihellocore.pcie_hard_ip_0: pcie_hard_ip_0.reconfig_fromgxb_0 must be exported, or connected to a matching conduit.
 Warning: pcihellocore.pcie_hard_ip_0: Interrupt sender pcie_hard_ip_0.cra_irq is not connected to an interrupt receiver
 Info: pcihellocore: Generating pcihellocore "pcihellocore" for QUARTUS_SYNTH
-Info: hex_display: Starting RTL generation for module 'pcihellocore_hex_display'
-Info: hex_display:   Generation command is [exec C:/intelfpga/16.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga/16.1/quartus/bin64/perl/lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin/europa -I C:/intelfpga/16.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=pcihellocore_hex_display --dir=C:/Users/ijmg/AppData/Local/Temp/alt7688_4175875044606417943.dir/0002_hex_display_gen/ --quartus_dir=C:/intelfpga/16.1/quartus --verilog --config=C:/Users/ijmg/AppData/Local/Temp/alt7688_4175875044606417943.dir/0002_hex_display_gen//pcihellocore_hex_display_component_configuration.pl  --do_build_sim=0  ]
-Info: hex_display: Done RTL generation for module 'pcihellocore_hex_display'
-Info: hex_display: "pcihellocore" instantiated altera_avalon_pio "hex_display"
+Info: green_leds: Starting RTL generation for module 'pcihellocore_green_leds'
+Info: green_leds:   Generation command is [exec C:/intelfpga/16.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga/16.1/quartus/bin64/perl/lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin/europa -I C:/intelfpga/16.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=pcihellocore_green_leds --dir=C:/Users/aht/AppData/Local/Temp/alt7695_3523942048522376421.dir/0002_green_leds_gen/ --quartus_dir=C:/intelfpga/16.1/quartus --verilog --config=C:/Users/aht/AppData/Local/Temp/alt7695_3523942048522376421.dir/0002_green_leds_gen//pcihellocore_green_leds_component_configuration.pl  --do_build_sim=0  ]
+Info: green_leds: Done RTL generation for module 'pcihellocore_green_leds'
+Info: green_leds: "pcihellocore" instantiated altera_avalon_pio "green_leds"
 Info: inport: Starting RTL generation for module 'pcihellocore_inport'
-Info: inport:   Generation command is [exec C:/intelfpga/16.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga/16.1/quartus/bin64/perl/lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin/europa -I C:/intelfpga/16.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=pcihellocore_inport --dir=C:/Users/ijmg/AppData/Local/Temp/alt7688_4175875044606417943.dir/0003_inport_gen/ --quartus_dir=C:/intelfpga/16.1/quartus --verilog --config=C:/Users/ijmg/AppData/Local/Temp/alt7688_4175875044606417943.dir/0003_inport_gen//pcihellocore_inport_component_configuration.pl  --do_build_sim=0  ]
+Info: inport:   Generation command is [exec C:/intelfpga/16.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga/16.1/quartus/bin64/perl/lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin/europa -I C:/intelfpga/16.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=pcihellocore_inport --dir=C:/Users/aht/AppData/Local/Temp/alt7695_3523942048522376421.dir/0003_inport_gen/ --quartus_dir=C:/intelfpga/16.1/quartus --verilog --config=C:/Users/aht/AppData/Local/Temp/alt7695_3523942048522376421.dir/0003_inport_gen//pcihellocore_inport_component_configuration.pl  --do_build_sim=0  ]
 Info: inport: Done RTL generation for module 'pcihellocore_inport'
 Info: inport: "pcihellocore" instantiated altera_avalon_pio "inport"
-Info: key: Starting RTL generation for module 'pcihellocore_key'
-Info: key:   Generation command is [exec C:/intelfpga/16.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga/16.1/quartus/bin64/perl/lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin/europa -I C:/intelfpga/16.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=pcihellocore_key --dir=C:/Users/ijmg/AppData/Local/Temp/alt7688_4175875044606417943.dir/0004_key_gen/ --quartus_dir=C:/intelfpga/16.1/quartus --verilog --config=C:/Users/ijmg/AppData/Local/Temp/alt7688_4175875044606417943.dir/0004_key_gen//pcihellocore_key_component_configuration.pl  --do_build_sim=0  ]
-Info: key: Done RTL generation for module 'pcihellocore_key'
-Info: key: "pcihellocore" instantiated altera_avalon_pio "key"
-Info: led_g: Starting RTL generation for module 'pcihellocore_led_g'
-Info: led_g:   Generation command is [exec C:/intelfpga/16.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga/16.1/quartus/bin64/perl/lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin/europa -I C:/intelfpga/16.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=pcihellocore_led_g --dir=C:/Users/ijmg/AppData/Local/Temp/alt7688_4175875044606417943.dir/0005_led_g_gen/ --quartus_dir=C:/intelfpga/16.1/quartus --verilog --config=C:/Users/ijmg/AppData/Local/Temp/alt7688_4175875044606417943.dir/0005_led_g_gen//pcihellocore_led_g_component_configuration.pl  --do_build_sim=0  ]
-Info: led_g: Done RTL generation for module 'pcihellocore_led_g'
-Info: led_g: "pcihellocore" instantiated altera_avalon_pio "led_g"
 Info: pcie_hard_ip_0: "pcihellocore" instantiated altera_pcie_hard_ip "pcie_hard_ip_0"
+Info: push_buttons: Starting RTL generation for module 'pcihellocore_push_buttons'
+Info: push_buttons:   Generation command is [exec C:/intelfpga/16.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga/16.1/quartus/bin64/perl/lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin/europa -I C:/intelfpga/16.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga/16.1/quartus/sopc_builder/bin -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga/16.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=pcihellocore_push_buttons --dir=C:/Users/aht/AppData/Local/Temp/alt7695_3523942048522376421.dir/0004_push_buttons_gen/ --quartus_dir=C:/intelfpga/16.1/quartus --verilog --config=C:/Users/aht/AppData/Local/Temp/alt7695_3523942048522376421.dir/0004_push_buttons_gen//pcihellocore_push_buttons_component_configuration.pl  --do_build_sim=0  ]
+Info: push_buttons: Done RTL generation for module 'pcihellocore_push_buttons'
+Info: push_buttons: "pcihellocore" instantiated altera_avalon_pio "push_buttons"
 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
@@ -154,7 +148,6 @@ Info: avalon_st_adapter_003: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_004: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_005: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_006: Inserting error_adapter: error_adapter_0
-Info: avalon_st_adapter_007: Inserting error_adapter: error_adapter_0
 Info: mm_interconnect_0: "pcihellocore" instantiated altera_mm_interconnect "mm_interconnect_0"
 Info: irq_mapper: "pcihellocore" instantiated altera_irq_mapper "irq_mapper"
 Info: rst_controller: "pcihellocore" instantiated altera_reset_controller "rst_controller"
@@ -172,23 +165,23 @@ Info: pcie_hard_ip_0_cra_agent: "mm_interconnect_0" instantiated altera_merlin_s
 Info: pcie_hard_ip_0_cra_agent_rsp_fifo: "mm_interconnect_0" instantiated altera_avalon_sc_fifo "pcie_hard_ip_0_cra_agent_rsp_fifo"
 Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
 Info: router_001: "mm_interconnect_0" instantiated altera_merlin_router "router_001"
-Info: router_008: "mm_interconnect_0" instantiated altera_merlin_router "router_008"
+Info: router_007: "mm_interconnect_0" instantiated altera_merlin_router "router_007"
 Info: pcie_hard_ip_0_bar0_limiter: "mm_interconnect_0" instantiated altera_merlin_traffic_limiter "pcie_hard_ip_0_bar0_limiter"
-Info: Reusing file C:/Users/ijmg/Desktop/mapeamento/pcihello_restored/pcihellocore/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: Reusing file C:/Users/aht/Downloads/AP7/Materiais/pcihello_restored/pcihellocore/synthesis/submodules/altera_avalon_sc_fifo.v
 Info: pcie_hard_ip_0_cra_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "pcie_hard_ip_0_cra_burst_adapter"
-Info: Reusing file C:/Users/ijmg/Desktop/mapeamento/pcihello_restored/pcihellocore/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: Reusing file C:/Users/aht/Downloads/AP7/Materiais/pcihello_restored/pcihellocore/synthesis/submodules/altera_avalon_st_pipeline_base.v
 Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
 Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
-Info: Reusing file C:/Users/ijmg/Desktop/mapeamento/pcihello_restored/pcihellocore/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: Reusing file C:/Users/aht/Downloads/AP7/Materiais/pcihello_restored/pcihellocore/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: pcie_hard_ip_0_cra_rsp_width_adapter: "mm_interconnect_0" instantiated altera_merlin_width_adapter "pcie_hard_ip_0_cra_rsp_width_adapter"
-Info: Reusing file C:/Users/ijmg/Desktop/mapeamento/pcihello_restored/pcihellocore/synthesis/submodules/altera_merlin_address_alignment.sv
-Info: Reusing file C:/Users/ijmg/Desktop/mapeamento/pcihello_restored/pcihellocore/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: Reusing file C:/Users/aht/Downloads/AP7/Materiais/pcihello_restored/pcihellocore/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file C:/Users/aht/Downloads/AP7/Materiais/pcihello_restored/pcihellocore/synthesis/submodules/altera_merlin_burst_uncompressor.sv
 Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
-Info: avalon_st_adapter_007: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter_007"
+Info: avalon_st_adapter_006: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter_006"
 Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
-Info: error_adapter_0: "avalon_st_adapter_007" instantiated error_adapter "error_adapter_0"
-Info: pcihellocore: Done "pcihellocore" with 32 modules, 71 files
+Info: error_adapter_0: "avalon_st_adapter_006" instantiated error_adapter "error_adapter_0"
+Info: pcihellocore: Done "pcihellocore" with 31 modules, 70 files
 Info: qsys-generate succeeded.
 Info: Finished: Create HDL design files for synthesis

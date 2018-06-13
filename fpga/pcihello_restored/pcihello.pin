@@ -32,7 +32,7 @@
  --                  Bank 4:       2.5V
  --                  Bank 5:       2.5V
  --                  Bank 6:       2.5V
- --                  Bank 7:       2.5V
+ --                  Bank 7:       3.3V
  --                  Bank 8:  2.5V
  --                  Bank 9:  2.5V
  -- RREF          : External reference resistor for the quad, MUST be connected to
@@ -337,7 +337,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AH20      :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH21      :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH22      :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH23      :        :                   :         : 4         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AH24      :        :                   :         : 4         :                
+PCIE_TX_P[1]                 : AH24      : output : 2.5 V             :         : 4         : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH25      :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH26      :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AH27      :        :                   :         : 4         :                
@@ -543,7 +543,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : F18       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : F19       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : F20       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : F21       :        :                   :         : 7         :                
-PCIE_TX_P[1]                 : F22       : output : 2.5 V             :         : 7         : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : F22       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : F23       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : F24       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : F25       :        :                   :         : 7         :                
@@ -570,7 +570,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : G15       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : G16       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G17       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G18       :        :                   :         : 7         :                
-VCCIO7                       : G19       : power  :                   : 2.5V    : 7         :                
+VCCIO7                       : G19       : power  :                   : 3.3V    : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G20       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G21       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G22       :        :                   :         : 7         :                
@@ -599,11 +599,11 @@ GND                          : H14       : gnd    :                   :         
 VCCIO8                       : H15       : power  :                   : 2.5V    : 8         :                
 VCCIO8                       : H16       : power  :                   : 2.5V    : 8         :                
 GND                          : H17       : gnd    :                   :         :           :                
-VCCIO7                       : H18       : power  :                   : 2.5V    : 7         :                
-VCCIO7                       : H19       : power  :                   : 2.5V    : 7         :                
+VCCIO7                       : H18       : power  :                   : 3.3V    : 7         :                
+VCCIO7                       : H19       : power  :                   : 3.3V    : 7         :                
 GND                          : H20       : gnd    :                   :         :           :                
-VCCIO7                       : H21       : power  :                   : 2.5V    : 7         :                
-VCCIO7                       : H22       : power  :                   : 2.5V    : 7         :                
+VCCIO7                       : H21       : power  :                   : 3.3V    : 7         :                
+VCCIO7                       : H22       : power  :                   : 3.3V    : 7         :                
 GND                          : H23       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : H24       :        :                   :         : 7         :                
 SW[17]                       : H25       : input  : 2.5 V             :         : 6         : Y              
@@ -628,12 +628,12 @@ VCCIO8                       : J13       : power  :                   : 2.5V    
 VCCIO8                       : J14       : power  :                   : 2.5V    : 8         :                
 VCCIO8                       : J15       : power  :                   : 2.5V    : 8         :                
 VCCIO8                       : J16       : power  :                   : 2.5V    : 8         :                
-VCCIO7                       : J17       : power  :                   : 2.5V    : 7         :                
-VCCIO7                       : J18       : power  :                   : 2.5V    : 7         :                
-VCCIO7                       : J19       : power  :                   : 2.5V    : 7         :                
-VCCIO7                       : J20       : power  :                   : 2.5V    : 7         :                
-VCCIO7                       : J21       : power  :                   : 2.5V    : 7         :                
-VCCIO7                       : J22       : power  :                   : 2.5V    : 7         :                
+VCCIO7                       : J17       : power  :                   : 3.3V    : 7         :                
+VCCIO7                       : J18       : power  :                   : 3.3V    : 7         :                
+VCCIO7                       : J19       : power  :                   : 3.3V    : 7         :                
+VCCIO7                       : J20       : power  :                   : 3.3V    : 7         :                
+VCCIO7                       : J21       : power  :                   : 3.3V    : 7         :                
+VCCIO7                       : J22       : power  :                   : 3.3V    : 7         :                
 VCCD_PLL                     : J23       : power  :                   : 1.2V    :           :                
 GND                          : J24       : gnd    :                   :         :           :                
 LEDG[8]                      : J25       : output : 2.5 V             :         : 6         : Y              

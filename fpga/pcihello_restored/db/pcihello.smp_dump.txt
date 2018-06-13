@@ -1,26 +1,19 @@
 
-State Machine - |pcihello|pcihellocore:u0|pcihellocore_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:key_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |pcihello|pcihellocore:u0|pcihellocore_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:green_leds_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |pcihello|pcihellocore:u0|pcihellocore_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:led_r_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |pcihello|pcihellocore:u0|pcihellocore_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:red_leds_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |pcihello|pcihellocore:u0|pcihellocore_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:led_g_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
-Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
-state.ST_IDLE 0 0 0 0 
-state.ST_COMP_TRANS 1 0 0 1 
-state.ST_UNCOMP_TRANS 1 0 1 0 
-state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
-
-State Machine - |pcihello|pcihellocore:u0|pcihellocore_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:hex_display_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |pcihello|pcihellocore:u0|pcihellocore_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:push_buttons_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 

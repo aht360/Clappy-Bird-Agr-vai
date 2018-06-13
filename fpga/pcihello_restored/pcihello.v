@@ -89,11 +89,10 @@ inout 		          		FAN_CTRL;
 //=======================================================
 
 wire [31:0] hexbus;
-wire [31:0] hex_display;
-wire [31:0] led_g;
-wire [31:0] led_r;
-wire [31:0] buttons;
-wire [17:0] switches;
+wire [31:0] push_buttons;
+wire [31:0] red_leds;
+wire [31:0] green_leds;
+wire [15:0] inbus;
 
 
 //=======================================================
@@ -107,31 +106,25 @@ wire [17:0] switches;
         .pcie_hard_ip_0_powerdown_gxb_powerdown (PCIE_WAKE_N), //                         .gxb_powerdown
         .pcie_hard_ip_0_refclk_export           (PCIE_REFCLK_P),           //    pcie_hard_ip_0_refclk.export
         .pcie_hard_ip_0_pcie_rstn_export        (PCIE_PERST_N),
-        .hex_display_external_connection_1_export	(hex_display),
-		  .inport_external_connection_export      (switches),       //  inport_external_connection.export
-		  .led_g_external_connection_export			(led_g),
-		  .led_r_external_connection_export			(led_r),
-		  .key_external_connection_export			(buttons),
-		  .hexport_external_connection_export     (hexbus)     // hexport_external_connection.export
-        
+        .hexport_external_connection_export     (hexbus),     // hexport_external_connection.export
+		  .push_buttons_external_connection_export(push_buttons),
+		  .red_leds_external_connection_export(red_leds),
+		  .green_leds_external_connection_export(green_leds),
+        .inport_external_connection_export      (inbus)       //  inport_external_connection.export
     );
 
 
 	//////////// FAN Control //////////
-assign FAN_CTRL = 1'bz; // turn off FAN
+assign FAN_CTRL = 1'b1; // turn off FAN
 
 assign HEX0 = hexbus[ 6: 0];
 assign HEX1 = hexbus[14: 8];
 assign HEX2 = hexbus[22:16];
 assign HEX3 = hexbus[30:24];
-assign HEX4 = hex_display[ 6: 0];
-assign HEX5 = hex_display[14: 8];
-assign HEX6 = hex_display[22:16];
-assign HEX7 = hex_display[30:24];
-assign LEDG = led_g[8:0];
-assign LEDR = led_r[17:0];
-assign buttons = KEY[3:0];
+assign LEDR = red_leds[17:0];
+assign LEDG = green_leds[8:0];
 
-assign switches = SW[17:0];
+assign inbus = SW[15:0];
+assign push_buttons = KEY[3:0];
 
 endmodule
