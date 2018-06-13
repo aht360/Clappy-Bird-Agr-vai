@@ -114,3 +114,14 @@ void Bird::reset(const int width, const int height){
 
 	velocity = 0;
 }
+
+void Bird::changeColor(std::string color){
+	std::string bNormal = "Resources/"+color+"/bird_normal.bmp";
+	std::string bDown = "Resources/"+color+"/bird_down.bmp";
+	std::string bUp = "Resources/"+color+"/bird_up.bmp";
+
+	birdNormal = al_load_bitmap(bNormal.c_str());
+	birdDown = al_load_bitmap(bDown.c_str());
+	birdUp = al_load_bitmap(bUp.c_str());
+
+}

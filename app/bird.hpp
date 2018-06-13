@@ -18,6 +18,7 @@ class Bird{
 		float x;
 		float y;
 		bool isCollision(Tube tube, const int height);
+		void changeColor(std::string color);
 	private:
 		ALLEGRO_BITMAP *birdNormal;
 		ALLEGRO_BITMAP *birdDown;
