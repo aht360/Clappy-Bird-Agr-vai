@@ -1,5 +1,9 @@
 #include "app.hpp"
 
+#define PAUSAR 8
+#define VERDE 4
+#define AMARELO 2
+#define ROSA 1
 
 int main () {
 
@@ -8,15 +12,15 @@ int main () {
 	int n = 0;
 
     int dev = open("/dev/de2i150_altera", O_RDWR);
-
+    
 	bool redraw = true;
 	float gameTime = 0.0;
 	int frames = 0;
 	int gameFPS = 0;
-
 	bool quit = false;
 	char num ='1';
-	#pragma omp parallel num_threads(2)
+	bool pointSound = false;
+	#pragma omp parallel num_threads(3)
 	{
 		#pragma omp sections
 		{
@@ -45,6 +49,16 @@ int main () {
 					}
 				}
 			}
+			#pragma omp section
+			{
+				while(!quit){
+					if(pointSound == true){
+							bzzr(493);
+							bzzr(329);
+						pointSound = false;
+					}
+				}
+			}
 
 			#pragma omp section
 			{
@@ -57,7 +71,10 @@ int main () {
 					printf("Failed to load tube!\n");
 				}
 
+				int bt;
+				int sw;
 				bird = Bird("yellow", SCREEN_WIDTH, SCREEN_HEIGHT);
+				char back = 'd';
 				bool paused = true;
 				bool buttonPress = false;
 				bool addScore = true;
@@ -72,6 +89,8 @@ int main () {
 				while (!quit) {
 					ALLEGRO_EVENT ev;
 					al_wait_for_event(event_queue, &ev);
+					bt = readButton(dev);
+
 					if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 						quit = true;
 					} else if (ev.type == ALLEGRO_EVENT_TIMER && al_event_queue_is_empty(event_queue) && !paused) {
@@ -95,6 +114,7 @@ int main () {
 						if(tubes.front().checkScore(SCREEN_WIDTH, bird.x) && addScore){
 							score += 1;
 							writeScore(score, dev);
+							pointSound = true;
 							printf("Score: %d\n", score);
 							addScore = false;
 						}
@@ -165,6 +185,43 @@ int main () {
 						}
 						bird.draw();
 						al_flip_display();
+					}
+					if(bt == 0){
+						buttonPress = false;
+					}
+					if(buttonPress == false && bt != 0){
+						buttonPress = true;
+						if(bt == PAUSAR){
+							if(paused){
+								paused = false;
+
+								bird.setTimer(al_current_time());
+								for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+									(*it).setTimer(al_current_time());
+								}
+							}
+							else{
+								paused = true;
+							}
+						}
+						else if(bt == AMARELO){
+							bird.changeColor("yellow");
+						}else if(bt == ROSA){
+							bird.changeColor("pink");
+						}else if(bt == VERDE){
+							bird.changeColor("green");
+						}
+					}
+					
+					sw = readSwitch(dev);
+					if(sw == 2 && back == 'd'){
+						printf("a\n", sw);
+    					backgroundScreen = al_load_bitmap("Resources/background_night.bmp");
+    					back = 'n';
+					}else if(!(sw & (1 << 1)) &&back == 'n'){
+						printf("b\n", sw);
+    					backgroundScreen = al_load_bitmap("Resources/background.bmp");
+    					back = 'd';
 					}
 				}
 				close();
@@ -313,4 +370,19 @@ void writeScore(int score, int dev){
 	k = ~k;
 	write(dev, &k, 0);
 	write(dev, &k, 0);
+}
+
+int readButton(int dev){
+	int j;
+	read(dev, &j, 0);
+	j = ~j;
+	j = j & 0XF;
+	return j;
+}
+
+int readSwitch(int dev){
+	int sw;
+	read(dev, &sw, 1);
+	sw &= 0x3FFFF;
+	return sw;
 }

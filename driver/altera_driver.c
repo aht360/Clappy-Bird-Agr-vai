@@ -16,6 +16,7 @@ static void *butt;  // handle to 32-bit input PIO
 static void *sw;   // handle to 16-bit input PIO
 static void *redLed;  // handle to 32-bit output PIO
 static void *greenLed;  // handle to 32-bit output PIO
+static void *hexport2;  // handle to 32-bit output PIO
 
 //-- Char Driver Interface
 static int   access_count =  0;
@@ -47,9 +48,17 @@ static int char_device_release(struct inode *inodep, struct file *filep) {
 static ssize_t char_device_read(struct file *filep, char *buf, size_t len, loff_t *off) {
   short push_buttons;
   size_t count = len;
+  long switches;
   //  printk(KERN_ALERT "altera_driver: read %d bytes\n", len);
-  push_buttons = ioread32(butt);
-  put_user(push_buttons, buf++);
+  if(len == 0){   //butao
+    push_buttons = ioread32(butt);
+    put_user(push_buttons, buf++);
+  }else if(len == 1){
+    switches = ioread32(sw);
+    put_user((switches) & 0xFF, buf++);
+    put_user((switches >> 8) & 0xFF, buf++);
+    put_user((switches >> 16) & 0xFF, buf++);
+  }
 
   return count;
 }
@@ -122,6 +131,7 @@ static int pci_probe(struct pci_dev *dev, const struct pci_device_id *id) {
   greenLed = ioremap_nocache(resource + 0XC080, 0x20);
   redLed = ioremap_nocache(resource + 0XC060, 0x20);
   butt = ioremap_nocache(resource + 0XC040, 0x20);
+  hexport2 = ioremap_nocache(resource + 0XC0A0, 0x20);
 
   return 0;
 }
@@ -132,6 +142,7 @@ static void pci_remove(struct pci_dev *dev) {
   iounmap(butt);
   iounmap(redLed);
   iounmap(greenLed);
+  iounmap(hexport2);
 }
 
 

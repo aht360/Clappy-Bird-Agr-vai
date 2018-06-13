@@ -42,9 +42,13 @@ list <Tube> tubes;
 
 LibSerial::SerialStream my_serial;
 
+extern "C"{void bzzr(int);}
+
 bool init();
 bool loadMedia_tubes();
 void close();
 void writeLed(int count, int dev);
 void derrota(int dev);
 void writeScore(int score, int dev);
+int readButton(int dev);
+int readSwitch(int dev);

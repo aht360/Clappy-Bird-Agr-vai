@@ -10,5 +10,6 @@ OBJ_NAME = app
 
 #This is the target that compiles our executable
 all : $(OBJS)
-	g++ $(OBJS) -L/usr/local/lib -w -lallegro_image -lallegro -lserial -fopenmp -o $(OBJ_NAME)
+	nasm -f elf buzzer.asm
+	g++ -m32 $(OBJS) -o $(OBJ_NAME) buzzer.o -L/usr/local/lib -w -lallegro_image -lallegro -lserial -fopenmp 
 	sudo ./$(OBJ_NAME)
