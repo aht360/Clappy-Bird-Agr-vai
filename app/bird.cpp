@@ -25,7 +25,7 @@ void Bird::draw(){
 	if(velocity>1){
 		al_draw_bitmap(birdDown, x, y, 0);
 
-	}else if(velocity<=10 && velocity >= -10){
+	}else if(velocity<=18 && velocity >= -18){
 		al_draw_bitmap(birdNormal, x, y, 0);
 		
 	}else{
@@ -86,7 +86,7 @@ void Bird::close(){
  			return true;
   		if((hitboxX < topTubeX + tube.w) && ((hitboxX+birdW) > topTubeX) && (hitboxY <(topTubeY + tube.h)) && ((hitboxY + birdH) > topTubeY))
  			return true;
- 	}else if(velocity <=10 && velocity >= -10){
+ 	}else if(velocity <=18 && velocity >= -18){
   		birdW = al_get_bitmap_width(birdNormal) - 3;
   		birdH = al_get_bitmap_height(birdNormal) - 3;
   		if(hitboxY+birdH >= height)

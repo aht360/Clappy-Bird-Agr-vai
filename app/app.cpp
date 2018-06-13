@@ -6,7 +6,6 @@ int main () {
 	LibSerial::SerialStream my_serial;
 	srand(time(NULL));
 	int n = 0;
-	int i;
 
     int dev = open("/dev/de2i150_altera", O_RDWR);
 
@@ -124,6 +123,10 @@ int main () {
 							}
 							al_flip_display();
 							derrota(dev);
+							#pragma omp critical (input)
+							{
+								num = '1';
+							}
 							bird.reset(SCREEN_WIDTH, SCREEN_HEIGHT);
 							loadMedia_tubes();
 							al_draw_bitmap(backgroundScreen, 0, 0, 0);

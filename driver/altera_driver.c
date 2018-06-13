@@ -12,7 +12,7 @@ MODULE_AUTHOR("Patrick Schaumont");
 //-- Hardware Handles
 
 static void *hexport;  // handle to 32-bit output PIO
-static void *butt;  // handle to 32-bit output PIO
+static void *butt;  // handle to 32-bit input PIO
 static void *sw;   // handle to 16-bit input PIO
 static void *redLed;  // handle to 32-bit output PIO
 static void *greenLed;  // handle to 32-bit output PIO
@@ -48,7 +48,7 @@ static ssize_t char_device_read(struct file *filep, char *buf, size_t len, loff_
   short push_buttons;
   size_t count = len;
   //  printk(KERN_ALERT "altera_driver: read %d bytes\n", len);
-  push_buttons = ioread32(sw);
+  push_buttons = ioread32(butt);
   put_user(push_buttons, buf++);
 
   return count;
@@ -117,11 +117,11 @@ static int pci_probe(struct pci_dev *dev, const struct pci_device_id *id) {
   resource = pci_resource_start(dev, 0);
   printk(KERN_ALERT "altera_driver: Resource start at bar 0: %lx\n", resource);
 
-  hexport = ioremap_nocache(resource + 0XC020, 0x20);
-  butt = ioremap_nocache(resource + 0XC0A0, 0X20);
-  sw  = ioremap_nocache(resource + 0XC040, 0x20);
-  redLed = ioremap_nocache(resource + 0XC080, 0x20);
-  greenLed = ioremap_nocache(resource + 0XC060, 0x20);
+  hexport = ioremap_nocache(resource + 0XC000, 0x20);
+  sw  = ioremap_nocache(resource + 0XC020, 0x20);
+  greenLed = ioremap_nocache(resource + 0XC080, 0x20);
+  redLed = ioremap_nocache(resource + 0XC060, 0x20);
+  butt = ioremap_nocache(resource + 0XC040, 0x20);
 
   return 0;
 }
