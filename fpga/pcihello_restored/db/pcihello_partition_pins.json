@@ -340,15 +340,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[0]",
-					"strict" : false
-				},
-				{
 					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[1]",
+					"name" : "SW[0]",
 					"strict" : false
 				},
 				{
@@ -356,7 +352,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[2]",
+					"name" : "SW[1]",
 					"strict" : false
 				},
 				{
@@ -364,11 +360,15 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[3]",
+					"name" : "SW[2]",
 					"strict" : false
 				},
 				{
 					"name" : "KEY[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[3]",
 					"strict" : false
 				},
 				{
@@ -417,14 +417,6 @@
 				},
 				{
 					"name" : "SW[15]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[16]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[17]",
 					"strict" : false
 				}
 			]

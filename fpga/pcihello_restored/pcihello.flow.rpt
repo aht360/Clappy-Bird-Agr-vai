@@ -1,5 +1,5 @@
 Flow report for pcihello
-Wed Jun 13 18:15:28 2018
+Wed Jun 13 19:30:40 2018
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
 
 
@@ -41,17 +41,17 @@ agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Wed Jun 13 18:15:20 2018           ;
+; Flow Status                        ; Successful - Wed Jun 13 19:30:32 2018           ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Standard Edition ;
 ; Revision Name                      ; pcihello                                        ;
 ; Top-level Entity Name              ; pcihello                                        ;
 ; Family                             ; Cyclone IV GX                                   ;
 ; Device                             ; EP4CGX150DF31C7                                 ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 6,206 / 149,760 ( 4 % )                         ;
-;     Total combinational functions  ; 5,331 / 149,760 ( 4 % )                         ;
-;     Dedicated logic registers      ; 3,836 / 149,760 ( 3 % )                         ;
-; Total registers                    ; 3836                                            ;
+; Total logic elements               ; 6,204 / 149,760 ( 4 % )                         ;
+;     Total combinational functions  ; 5,321 / 149,760 ( 4 % )                         ;
+;     Dedicated logic registers      ; 3,830 / 149,760 ( 3 % )                         ;
+; Total registers                    ; 3830                                            ;
 ; Total pins                         ; 119 / 508 ( 23 % )                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 54,656 / 6,635,520 ( < 1 % )                    ;
@@ -69,7 +69,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/13/2018 18:13:05 ;
+; Start date & time ; 06/13/2018 19:28:24 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; pcihello            ;
 +-------------------+---------------------+
@@ -80,7 +80,7 @@ agreement for further details.
 +-------------------------------------+----------------------------------------------------------------+---------------+--------------+------------+
 ; Assignment Name                     ; Value                                                          ; Default Value ; Entity Name  ; Section Id ;
 +-------------------------------------+----------------------------------------------------------------+---------------+--------------+------------+
-; COMPILER_SIGNATURE_ID               ; 35344969730155.152892438507072                                 ; --            ; --           ; --         ;
+; COMPILER_SIGNATURE_ID               ; 35344969730155.152892890304044                                 ; --            ; --           ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                             ; --            ; --           ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                              ; --            ; --           ; --         ;
 ; MISC_FILE                           ; pcihellocore/synthesis/../pcihellocore.cmp                     ; --            ; --           ; --         ;
@@ -96,7 +96,7 @@ agreement for further details.
 ; SEARCH_PATH                         ; pcihellocore/synthesis/submodules/                             ; --            ; --           ; --         ;
 ; SLD_FILE                            ; pcihellocore/synthesis/pcihellocore.regmap                     ; --            ; --           ; --         ;
 ; SLD_FILE                            ; pcihellocore/synthesis/pcihellocore.debuginfo                  ; --            ; --           ; --         ;
-; SLD_INFO                            ; QSYS_NAME pcihellocore HAS_SOPCINFO 1 GENERATION_ID 1528923657 ; --            ; pcihellocore ; --         ;
+; SLD_INFO                            ; QSYS_NAME pcihellocore HAS_SOPCINFO 1 GENERATION_ID 1528928484 ; --            ; pcihellocore ; --         ;
 ; SOPCINFO_FILE                       ; pcihellocore/synthesis/../../pcihellocore.sopcinfo             ; --            ; --           ; --         ;
 ; SYNTHESIS_ONLY_QIP                  ; On                                                             ; --            ; --           ; --         ;
 +-------------------------------------+----------------------------------------------------------------+---------------+--------------+------------+
@@ -107,11 +107,11 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:01:16     ; 1.0                     ; 920 MB              ; 00:01:50                           ;
-; Fitter                    ; 00:00:42     ; 1.0                     ; 1922 MB             ; 00:00:55                           ;
-; Assembler                 ; 00:00:08     ; 1.0                     ; 652 MB              ; 00:00:06                           ;
-; TimeQuest Timing Analyzer ; 00:00:06     ; 1.2                     ; 869 MB              ; 00:00:06                           ;
-; Total                     ; 00:02:12     ; --                      ; --                  ; 00:02:57                           ;
+; Analysis & Synthesis      ; 00:01:13     ; 1.0                     ; 924 MB              ; 00:01:56                           ;
+; Fitter                    ; 00:00:43     ; 1.0                     ; 1923 MB             ; 00:00:55                           ;
+; Assembler                 ; 00:00:07     ; 1.0                     ; 655 MB              ; 00:00:06                           ;
+; TimeQuest Timing Analyzer ; 00:00:06     ; 1.2                     ; 872 MB              ; 00:00:06                           ;
+; Total                     ; 00:02:09     ; --                      ; --                  ; 00:03:03                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -13,7 +13,7 @@
    {
       datum _sortIndex
       {
-         value = "3";
+         value = "4";
          type = "int";
       }
    }
@@ -21,7 +21,7 @@
    {
       datum _sortIndex
       {
-         value = "0";
+         value = "1";
          type = "int";
       }
    }
@@ -37,7 +37,7 @@
    {
       datum _sortIndex
       {
-         value = "4";
+         value = "5";
          type = "int";
       }
    }
@@ -45,7 +45,7 @@
    {
       datum _sortIndex
       {
-         value = "5";
+         value = "0";
          type = "int";
       }
    }
@@ -90,7 +90,7 @@
    {
       datum _sortIndex
       {
-         value = "1";
+         value = "2";
          type = "int";
       }
    }
@@ -98,7 +98,7 @@
    {
       datum _sortIndex
       {
-         value = "2";
+         value = "3";
          type = "int";
       }
       datum sopceditor_expanded
@@ -409,15 +409,6 @@
    kind="avalon"
    version="16.1"
    start="pcie_hard_ip_0.bar0"
-   end="inport.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0xc020" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="16.1"
-   start="pcie_hard_ip_0.bar0"
    end="hexport.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0xc000" />
@@ -463,6 +454,15 @@
    kind="avalon"
    version="16.1"
    start="pcie_hard_ip_0.bar0"
+   end="inport.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0xc020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="16.1"
+   start="pcie_hard_ip_0.bar0"
    end="pcie_hard_ip_0.txs">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
@@ -473,11 +473,6 @@
    version="16.1"
    start="pcie_hard_ip_0.pcie_core_clk"
    end="pcie_hard_ip_0.cal_blk_clk" />
- <connection
-   kind="clock"
-   version="16.1"
-   start="pcie_hard_ip_0.pcie_core_clk"
-   end="inport.clk" />
  <connection
    kind="clock"
    version="16.1"
@@ -507,17 +502,17 @@
    kind="clock"
    version="16.1"
    start="pcie_hard_ip_0.pcie_core_clk"
+   end="inport.clk" />
+ <connection
+   kind="clock"
+   version="16.1"
+   start="pcie_hard_ip_0.pcie_core_clk"
    end="pcie_hard_ip_0.fixedclk" />
  <connection
    kind="clock"
    version="16.1"
    start="pcie_hard_ip_0.pcie_core_clk"
    end="pcie_hard_ip_0.reconfig_gxbclk" />
- <connection
-   kind="reset"
-   version="16.1"
-   start="pcie_hard_ip_0.pcie_core_reset"
-   end="inport.reset" />
  <connection
    kind="reset"
    version="16.1"
@@ -543,6 +538,11 @@
    version="16.1"
    start="pcie_hard_ip_0.pcie_core_reset"
    end="hexport2.reset" />
+ <connection
+   kind="reset"
+   version="16.1"
+   start="pcie_hard_ip_0.pcie_core_reset"
+   end="inport.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
 </system>

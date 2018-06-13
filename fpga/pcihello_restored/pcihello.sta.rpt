@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for pcihello
-Wed Jun 13 18:15:28 2018
+Wed Jun 13 19:30:40 2018
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
 
 
@@ -98,7 +98,7 @@ agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   6.9%      ;
+;     Processors 2-4         ;   7.0%      ;
 +----------------------------+-------------+
 
 
@@ -107,11 +107,11 @@ agreement for further details.
 +--------------------------------------------------------------------------------------------------------------------+--------+--------------------------+
 ; SDC File Path                                                                                                      ; Status ; Read at                  ;
 +--------------------------------------------------------------------------------------------------------------------+--------+--------------------------+
-; pcihellocore/synthesis/submodules/altera_reset_controller.sdc                                                      ; OK     ; Wed Jun 13 18:15:25 2018 ;
-; pcihellocore/synthesis/submodules/altera_pci_express.sdc                                                           ; OK     ; Wed Jun 13 18:15:25 2018 ;
-; pcihello.sdc                                                                                                       ; OK     ; Wed Jun 13 18:15:25 2018 ;
-; c:/users/dpc2/clappy-bird-agr-vai/fpga/pcihello_restored/db/ip/pcihellocore/submodules/altera_pci_express.sdc      ; OK     ; Wed Jun 13 18:15:25 2018 ;
-; c:/users/dpc2/clappy-bird-agr-vai/fpga/pcihello_restored/db/ip/pcihellocore/submodules/altera_reset_controller.sdc ; OK     ; Wed Jun 13 18:15:25 2018 ;
+; pcihellocore/synthesis/submodules/altera_reset_controller.sdc                                                      ; OK     ; Wed Jun 13 19:30:37 2018 ;
+; pcihellocore/synthesis/submodules/altera_pci_express.sdc                                                           ; OK     ; Wed Jun 13 19:30:37 2018 ;
+; pcihello.sdc                                                                                                       ; OK     ; Wed Jun 13 19:30:37 2018 ;
+; c:/users/dpc2/clappy-bird-agr-vai/fpga/pcihello_restored/db/ip/pcihellocore/submodules/altera_pci_express.sdc      ; OK     ; Wed Jun 13 19:30:37 2018 ;
+; c:/users/dpc2/clappy-bird-agr-vai/fpga/pcihello_restored/db/ip/pcihellocore/submodules/altera_reset_controller.sdc ; OK     ; Wed Jun 13 19:30:37 2018 ;
 +--------------------------------------------------------------------------------------------------------------------+--------+--------------------------+
 
 
@@ -387,17 +387,19 @@ No synchronizer chains to report.
 ; CLOCK_50            ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; CLOCK2_50           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; CLOCK3_50           ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[16]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[17]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; PCIE_RX_P[1]        ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; FAN_CTRL            ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; PCIE_PERST_N        ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; SW[0]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; KEY[0]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; SW[1]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[0]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; KEY[1]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; SW[2]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[1]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; KEY[2]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; SW[3]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[2]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; KEY[3]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[3]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[4]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[5]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[6]               ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -410,8 +412,6 @@ No synchronizer chains to report.
 ; SW[13]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[14]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[15]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; SW[16]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; SW[17]              ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_DATA0~      ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_ASDO_DATA1~ ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_NCSO~       ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -731,8 +731,8 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 9     ; 9    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 23    ; 23   ;
-; Unconstrained Input Port Paths  ; 25    ; 25   ;
+; Unconstrained Input Ports       ; 21    ; 21   ;
+; Unconstrained Input Port Paths  ; 23    ; 23   ;
 ; Unconstrained Output Ports      ; 83    ; 83   ;
 ; Unconstrained Output Port Paths ; 83    ; 83   ;
 +---------------------------------+-------+------+
@@ -784,8 +784,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; SW[13]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[14]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[15]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[16]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[17]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +--------------+--------------------------------------------------------------------------------------+
 
 
@@ -906,8 +904,6 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; SW[13]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[14]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[15]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[16]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
-; SW[17]       ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 +--------------+--------------------------------------------------------------------------------------+
 
 
@@ -1008,7 +1004,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime TimeQuest Timing Analyzer
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
-    Info: Processing started: Wed Jun 13 18:15:22 2018
+    Info: Processing started: Wed Jun 13 19:30:34 2018
 Info: Command: quartus_sta pcihello -c pcihello
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1171,8 +1167,8 @@ Warning (18330): Ignoring Synchronizer Identification setting Off, and using Aut
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime TimeQuest Timing Analyzer was successful. 0 errors, 75 warnings
-    Info: Peak virtual memory: 869 megabytes
-    Info: Processing ended: Wed Jun 13 18:15:28 2018
+    Info: Peak virtual memory: 872 megabytes
+    Info: Processing ended: Wed Jun 13 19:30:40 2018
     Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:06
 
