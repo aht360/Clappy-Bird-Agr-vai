@@ -1,5 +1,5 @@
 Restore Archived Project report for pcihello
-Wed Jun 13 18:27:34 2018
+Wed Jun 13 19:34:33 2018
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Standard Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +-------------------------------------------------------------------------+
 ; Restore Archived Project Summary                                        ;
 +---------------------------------+---------------------------------------+
-; Restore Archived Project Status ; Successful - Wed Jun 13 18:27:34 2018 ;
+; Restore Archived Project Status ; Successful - Wed Jun 13 19:34:33 2018 ;
 ; Revision Name                   ; pcihello                              ;
 ; Top-level Entity Name           ; pcihello                              ;
 ; Family                          ; Cyclone IV GX                         ;
@@ -52,7 +52,7 @@ Info: Generated report 'pcihello.restore.rpt'
 Info (23030): Evaluation of Tcl script c:/intelfpga/16.1/quartus/common/tcl/apps/qpm/qar.tcl was successful
 Info: Quartus Prime Shell was successful. 0 errors, 114 warnings
     Info: Peak virtual memory: 675 megabytes
-    Info: Processing ended: Wed Jun 13 18:27:34 2018
+    Info: Processing ended: Wed Jun 13 19:34:33 2018
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 
