@@ -89,10 +89,11 @@ inout 		          		FAN_CTRL;
 //=======================================================
 
 wire [31:0] hexbus;
+wire [31:0] hexbus2;
 wire [31:0] push_buttons;
 wire [31:0] red_leds;
 wire [31:0] green_leds;
-wire [15:0] inbus;
+wire [31:0] inbus;
 
 
 //=======================================================
@@ -110,7 +111,8 @@ wire [15:0] inbus;
 		  .push_buttons_external_connection_export(push_buttons),
 		  .red_leds_external_connection_export(red_leds),
 		  .green_leds_external_connection_export(green_leds),
-        .inport_external_connection_export      (inbus)       //  inport_external_connection.export
+        .inport_external_connection_export      (inbus)   ,    //  inport_external_connection.export
+		  .hexport2_external_connection_export     (hexbus2)
     );
 
 
@@ -121,10 +123,14 @@ assign HEX0 = hexbus[ 6: 0];
 assign HEX1 = hexbus[14: 8];
 assign HEX2 = hexbus[22:16];
 assign HEX3 = hexbus[30:24];
+assign HEX4 = hexbus2[ 6: 0];
+assign HEX5 = hexbus2[14: 8];
+assign HEX6 = hexbus2[22:16];
+assign HEX7 = hexbus2[30:24];
 assign LEDR = red_leds[17:0];
 assign LEDG = green_leds[8:0];
 
-assign inbus = SW[15:0];
+assign inbus = SW[17:0];
 assign push_buttons = KEY[3:0];
 
 endmodule
