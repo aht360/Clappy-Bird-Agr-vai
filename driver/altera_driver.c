@@ -77,6 +77,9 @@ static ssize_t char_device_write(struct file *filep, const char *buf, size_t typ
   } else if(type == 2) { //led vermelho 
     unsigned k = *((int *) ptr);
     iowrite32(k, redLed);
+  } else if(type == 3) { //7 segmentos 2-2
+    unsigned k = *((int *) ptr);
+    iowrite32(k, hexport2);
   }
 
   

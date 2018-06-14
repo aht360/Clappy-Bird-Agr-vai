@@ -2,8 +2,8 @@
 
 #define PAUSAR 8
 #define VERDE 4
-#define AMARELO 2
-#define ROSA 1
+#define ROSA 2
+#define AMARELO 1
 
 int main () {
 
@@ -20,6 +20,8 @@ int main () {
 	bool quit = false;
 	char num ='1';
 	bool pointSound = false;
+	bool loseSound = false;
+
 	#pragma omp parallel num_threads(3)
 	{
 		#pragma omp sections
@@ -53,9 +55,16 @@ int main () {
 			{
 				while(!quit){
 					if(pointSound == true){
-							bzzr(493);
-							bzzr(329);
+							bzzr(300);
+							usleep(10000);
+							bzzr(200);
 						pointSound = false;
+					}
+					if(loseSound == true){
+						bzzr(1342717728);
+						usleep(10000);	
+						bzzr(1342717728);
+						loseSound = false;
 					}
 				}
 			}
@@ -67,7 +76,7 @@ int main () {
 					printf("Failed to initialize!\n");
 				}
 
-				if(!loadMedia_tubes()){
+				if(!loadMedia_tubes(true)){
 					printf("Failed to load tube!\n");
 				}
 
@@ -78,13 +87,20 @@ int main () {
 				bool paused = true;
 				bool buttonPress = false;
 				bool addScore = true;
+				bool mute = false;
+				bool invencible = false;
+				bool pedro = false;
+
 				bird.draw();
 				al_flip_display();
 				al_start_timer(timer);
 				int life = 5;
 				int score = 0;
+				int highScore = 0;
+				int activeColor = AMARELO;
 				writeLed(life, dev);
-				writeScore(score, dev);
+				writeScore(score, dev, 0);
+				writeScore(highScore, dev, 3);
 				
 				while (!quit) {
 					ALLEGRO_EVENT ev;
@@ -113,9 +129,10 @@ int main () {
 
 						if(tubes.front().checkScore(SCREEN_WIDTH, bird.x) && addScore){
 							score += 1;
-							writeScore(score, dev);
-							pointSound = true;
-							printf("Score: %d\n", score);
+							writeScore(score, dev, 0);
+							if(mute == false) {
+								pointSound = true;	
+							}
 							addScore = false;
 						}
 
@@ -126,7 +143,7 @@ int main () {
 
 						bird.accel(false);
 						bird.update();
-						if(bird.isCollision(tubes.front(), SCREEN_HEIGHT)){
+						if(bird.isCollision(tubes.front(), SCREEN_HEIGHT) && invencible == false){
 							life --;
 							writeLed(life, dev);
 							paused = true;
@@ -138,17 +155,23 @@ int main () {
 							bird.draw();
 							if(life == 0){
 								al_draw_bitmap(loseScreen, 0, 0, 0);
+								if(score > highScore) {
+									highScore = score;
+									writeScore(highScore, dev, 3);
+								}
 								score = 0;
-								writeScore(score, dev);
+								writeScore(score, dev, 0);
 							}
 							al_flip_display();
+							if(mute == false)
+								loseSound = true;
 							derrota(dev);
 							#pragma omp critical (input)
 							{
 								num = '1';
 							}
 							bird.reset(SCREEN_WIDTH, SCREEN_HEIGHT);
-							loadMedia_tubes();
+							loadMedia_tubes(!pedro);
 							al_draw_bitmap(backgroundScreen, 0, 0, 0);
 						}
 
@@ -160,7 +183,7 @@ int main () {
 							if(life == 0){
 								life = 5;
 								score = 0;
-								writeScore(score, dev);
+								writeScore(score, dev, 0);
 								writeLed(life, dev);
 							}
 							bird.setTimer(al_current_time());
@@ -206,22 +229,56 @@ int main () {
 						}
 						else if(bt == AMARELO){
 							bird.changeColor("yellow");
+							activeColor = AMARELO;
 						}else if(bt == ROSA){
 							bird.changeColor("pink");
+							activeColor = ROSA;
 						}else if(bt == VERDE){
 							bird.changeColor("green");
+							activeColor = VERDE;
 						}
 					}
 					
 					sw = readSwitch(dev);
-					if(sw == 2 && back == 'd'){
-						printf("a\n", sw);
+					if((sw & (1 << 1)) && back == 'd' && pedro == false){
     					backgroundScreen = al_load_bitmap("Resources/background_night.bmp");
     					back = 'n';
-					}else if(!(sw & (1 << 1)) &&back == 'n'){
-						printf("b\n", sw);
+					} else if(!(sw & (1 << 1)) && back == 'n' && pedro == false){
     					backgroundScreen = al_load_bitmap("Resources/background.bmp");
     					back = 'd';
+					} else if((sw & 1) && mute == false){
+    					mute = true;
+					} else if(!(sw & 1) && mute == true){
+    					mute = false;
+					}else if((sw & (1 << 2)) && invencible == false){
+						invencible = true;
+					}else if(!(sw & (1 << 2)) && invencible == true){
+						invencible = false;
+					}else if((sw & (1 << 11)) && (sw & (1 << 13)) && (sw & (1 << 15)) && pedro == false){
+						bird.changeColor("pedro");
+						pedro = true;
+						for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+							(*it).setTimer(al_current_time());
+							(*it).changeTube(true);
+						}
+						backgroundScreen = al_load_bitmap("Resources/background_rio.bmp");
+					}else if((!(sw & (1 << 11)) || !(sw & (1 << 13)) || !(sw & (1 << 15))) && pedro == true){
+						if(activeColor == AMARELO)
+							bird.changeColor("yellow");
+						if(activeColor == ROSA)
+							bird.changeColor("pink");
+						if(activeColor == VERDE)
+							bird.changeColor("green");
+						pedro = false;
+						for (list <Tube>::iterator it = tubes.begin(); it != tubes.end(); it++) {
+							(*it).setTimer(al_current_time());
+							(*it).changeTube(false);
+						}
+						if(back == 'd')
+							backgroundScreen = al_load_bitmap("Resources/background.bmp");
+						else
+    						backgroundScreen = al_load_bitmap("Resources/background_night.bmp");
+
 					}
 				}
 				close();
@@ -278,7 +335,7 @@ bool init() {
 		success = false;
     }
 
-    timer = al_create_timer(1.0 / FPS);
+    timer = al_create_timer(1.0 / 60);
 
  	al_draw_bitmap(backgroundScreen, 0, 0, 0);
     al_flip_display();
@@ -290,7 +347,7 @@ bool init() {
     return success;
 }
 
-bool loadMedia_tubes(){
+bool loadMedia_tubes(bool change){
 	bool success = true;
 
 	tubes.clear();
@@ -304,6 +361,7 @@ bool loadMedia_tubes(){
 			printf( "Unable to load image tube.bmp!\n");
 			success = false;
 		}
+		tubes.back().changeTube(!change);
 	}
 
 	return success;
@@ -358,7 +416,7 @@ void derrota(int dev){
 	write(dev, &k, 2);
 }
 
-void writeScore(int score, int dev){
+void writeScore(int score, int dev, int hexport){
 	int k = 0;
 	char str[4];
 	sprintf(str, "%04d", score);
@@ -368,8 +426,9 @@ void writeScore(int score, int dev){
 		count++;
 	}
 	k = ~k;
-	write(dev, &k, 0);
-	write(dev, &k, 0);
+
+	write(dev, &k, hexport);
+	write(dev, &k, hexport);
 }
 
 int readButton(int dev){

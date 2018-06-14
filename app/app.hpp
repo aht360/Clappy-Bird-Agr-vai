@@ -22,7 +22,6 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const int TUBE_MIN_Y = 4;
 const int TUBE_MAX_Y = 2;
-const int FPS = 60;
 
 unsigned char hexdigit[] = {0x3F, 0x06, 0x5B, 0x4F,
                             0x66, 0x6D, 0x7D, 0x07, 
@@ -45,10 +44,10 @@ LibSerial::SerialStream my_serial;
 extern "C"{void bzzr(int);}
 
 bool init();
-bool loadMedia_tubes();
+bool loadMedia_tubes(bool change);
 void close();
 void writeLed(int count, int dev);
 void derrota(int dev);
-void writeScore(int score, int dev);
+void writeScore(int score, int dev, int hexport);
 int readButton(int dev);
 int readSwitch(int dev);

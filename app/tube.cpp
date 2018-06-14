@@ -59,3 +59,13 @@ float Tube::getX(){
 float Tube::getY(){
 	return this->y;
 }
+
+void Tube::changeTube(bool change){
+	if(change == true){
+	tube_top = al_load_bitmap("Resources/cano.bmp");	
+	tube_bot = al_load_bitmap("Resources/cano.bmp");
+	}else{
+	tube_top = al_load_bitmap("Resources/tube_top.bmp");	
+	tube_bot = al_load_bitmap("Resources/tube_bot.bmp");
+	} 
+}
